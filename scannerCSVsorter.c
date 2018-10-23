@@ -9,18 +9,24 @@
 
  int main(int argc, char** argv){ 
    if(argc%2 ==0){ //even
+     printf("Incorrect Input");
      return -1; 
    } 
    if(argc >7){ //too long
+     printf("Incorrect Input");
      return -1; 
    } 
    if(argv[1] != "-c"){ //no -c
+     printf("Incorrect Input: No column flag");
      return -1; 
    } 
    if(argv[2] == NULL){ //no category
+     printf("Incorrect Input: No column name");
      return -1;  
    } 
-	 
+   if(argv[3] != "-d"){//no input directory specified
+	   
+   }
    int count=0;
   
    DIR* dir; 
