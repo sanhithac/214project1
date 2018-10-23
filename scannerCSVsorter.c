@@ -5,7 +5,7 @@
 #include <sys/types.h> 
 //#include "header.h" 
 //#include "movies.c" 
-//#include "mergesort.c" 
+#include "simpleCSVsorter.c" 
 
  int main(int argc, char** argv){ 
    if(argc%2 ==0){ //even
@@ -17,9 +17,11 @@
    if(argv[1] != "-c"){ //no -c
      return -1; 
    } 
-   if(argv[2] == NULL){ //no catergory
+   if(argv[2] == NULL){ //no category
      return -1;  
    } 
+	 
+   int count=0;
   
    DIR* dir; 
    struct dirent* ptr; 
