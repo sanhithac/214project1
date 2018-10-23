@@ -1,24 +1,23 @@
 #include <dirent.h> 
- #include <stdio.h> 
- #include <stdlib.h> 
- #include <string.h> 
- #include <sys/types.h> 
-
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h> 
+#include <sys/types.h> 
 //#include "header.h" 
 //#include "movies.c" 
 //#include "mergesort.c" 
 
  int main(int argc, char** argv){ 
-   if(argc%2 ==0){ 
+   if(argc%2 ==0){ //even
      return -1; 
    } 
-   if(argc >7){ 
+   if(argc >7){ //too long
      return -1; 
    } 
-   if(argv[1] != "-c"){ 
+   if(argv[1] != "-c"){ //no -c
      return -1; 
    } 
-   if(argv[2] == NULL){ 
+   if(argv[2] == NULL){ //no catergory
      return -1;  
    } 
   
@@ -36,8 +35,9 @@
      //new method: if ptr->d_name is csv,return 1. if direc, return 0. else return -1 
      //if csv,   
   } 
-
- /*
+   return 0; 
+ } 
+/*
 		void directChild(DIR* dir = opendir(dirc1)){
 			struct dirent* ptr;
 			while((ptr = readdir(dir))!= null){
@@ -62,5 +62,3 @@
 			}
 		}
 	*/
-   return 0; 
- } 
