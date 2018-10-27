@@ -2,6 +2,7 @@
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <string.h> 
+#include <unistd.h>
 #include <sys/types.h> 
 #include "simpleCSVsorter.c" 
 
@@ -39,12 +40,12 @@
              outDir=strcat(outDir, argv[6]);
    }
 	 
-   int count=0;
+   int processCounter=0;
   
    DIR* dir; 
    //struct dirent* ptr; 
 
-   dir = opendir(inDir); 
+   dir = opendir(inDir); //opens a directory
    if(dir == NULL){ 
 	   //print output values
      return -1; 
@@ -52,27 +53,41 @@
 directChild(dir);
    return 0; 
  } 
+
 void directChild(DIR* dir = opendir(dirc1)){
-	struct dirent* ptr;
+  int pid;
+	struct dirent* ptr; //points to the directory that is read
 	while((ptr = readdir(dir))!= null){
-		if directory
-			fork()
-			process++;
-				if child
+		if(isDirectory(ptr->d_name) == 1){
+			pid = fork();
+			processCounter++;
+				if (pid == 0){
 					directChild(); //recurse
-					print PID
-				if parent
+					printf("%d", pid);
+        }
+				else if (pid ==1){
 					continue;
-		if csv
-			fork();
-			process++;
-				if child
+        }
+        else{
+
+        }
+      }
+		else if(isCSV(ptr->d_name) == 1){
+			pid = fork();
+			processCounter++;
+				if (pid == 0){
 					mergesort();
-					print PID
-				if parent
+					printf("%d", pid);
+        }
+				if (pid == 1){
 					continue;
-		if else
-			continue;
-	}
-}
+        }
+		  else{
 	
+      }
+    }
+    else{ //neither direc or csv
+      continue;
+    }
+  }
+}
