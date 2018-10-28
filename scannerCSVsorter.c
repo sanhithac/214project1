@@ -54,7 +54,7 @@ int main(int argc, char** argv){
         outDir=argv[6];
    }
    else{
-     outdir=".";
+     outDir=".";
    }
 	 
    int processCounter=0;
