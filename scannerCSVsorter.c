@@ -53,7 +53,7 @@
 
    dir = opendir(inDir); //opens a directory
    if(dir == NULL){ 
-	   //print output values
+     printf("Incorrect Input: Input directory specified does not exist");
      return -1; 
    }
 directChild(dir);
@@ -69,7 +69,7 @@ void directChild(DIR* dir = opendir(dirc1)){
 	if(isDirectory(ptr->d_type) == DT_DIR){//directory
 		if (pid == 0){//child pid
 			directChild(ptr); //recurse
-			printf("%d", pid);
+			childpid(pid);
         	}
 		else if (pid ==1){//parent pid
 			continue;
@@ -79,7 +79,7 @@ void directChild(DIR* dir = opendir(dirc1)){
 		if (pid == 0){
 			if(isCSV(ptr->d_name) == 1){
 				mergesort();
-				printf("%d", pid);
+				childpid(pid);
         		}
 		}
 		if (pid == 1){
