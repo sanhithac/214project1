@@ -31,19 +31,19 @@
      return -1;  
    } 
    if(argv[3] == "-d"){//input directory specified
-     if(argc[4] == NULL)
+     if(argv[4] == NULL)
 	     printf("Incorrect Input: No directory specified");
      else
    	  inDir=strcat(inDir, argv[4]);//or try inDir = argv[4]
    }
    if(argv[3]=="-o"){//output directory specified
-     if(argc[4] == NULL)
+     if(argv[4] == NULL)
 	     printf("Incorrect Input: No directory specified");
      else
         outDir=strcat(outDir, argv[4]);
    }
    if(argv[5] == "-o"){//output directory specified
-     if(argc[6] == NULL)
+     if(argv[6] == NULL)
 	     printf("Incorrect Input: No directory specified");
      else
         outDir=strcat(outDir, argv[6]);
