@@ -107,7 +107,7 @@ void directChild(DIR* dir){
 //checks if the input is a directory
 int isDirectory(char d_name[]){
   for(int i =0; i< strlen(d_name);i++){
-    if(d_name[i].Equals('.')){
+    if(strcmp(d_name[i],".") != 0){
       return 0;
     }
   }
@@ -118,14 +118,13 @@ int isDirectory(char d_name[]){
 int isCSV(char d_name[]){
   if (strlen(d_name) < 5)
     return 0;
-  if (!(d_name[strlen(d_name)-1].Equals('v'))){
+  if (strcmp(d_name[strlen(d_name)-1],"v") != 0)
     return 0;
-  }
-  if(!(d_name[strlen(d_name)-2].Equals('s')))
+  if(strcmp(d_name[strlen(d_name)-2],"s") != 0)
     return 0;
-  if(!(d_name[strlen(d_name)-3].Equals('c')))
+  if(strcmp(d_name[strlen(d_name)-3],"c") != 0)
     return 0;
-  if(!(d_name[strlen(d_name)-4].Equals('.')))
+  if(strcmp(d_name[strlen(d_name)-4],".") != 0)
     return 0;
 
   return 1;
