@@ -11,7 +11,7 @@ typedef struct pidNode{
   struct pidNode *next;
 }pidNode;
 
-int sorter(FILE *fp, char *colName);
+int sorter(FILE *fp, char *colName, DIR *dir);
 Node* readfile(int colInd, FILE *fp);
 char *remove_leading_spaces(char* str);
 int columnNum(char *row, char *col);
