@@ -3,7 +3,7 @@
 #include<string.h>
 #include "scannerCSVsorter.h"
 
-int sorter(FILE *fp, char *colName){	
+int sorter(FILE *fp, char *colName, DIR *dir){	
   char firstrow[1000];
    if(fp==NULL){
      printf("Invalid Input");
