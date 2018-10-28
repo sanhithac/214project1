@@ -79,23 +79,31 @@ void directChild(DIR* dir, pidNode * head, int processCounter){
 	processCounter++;
 	if(ptr->d_type == DT_DIR){//directory
 		if (pid == 0){//child pid
-			temp=opendir(ptr->d_name);
-			directChild(temp, head, processCounter); //recurse
-			childpid(head, pid);
+			if(access(strcat("./", ptr->d_name), R_OK)==0{	
+				temp=opendir(ptr->d_name);
+				directChild(temp, head, processCounter); //recurse
+				childpid(head, pid);
+			}
         	}
 		else if (pid ==1){//parent pid
-			wait();
+			while(wait(0, NULL, 0)<=0){
+			}
+			continue;
         	}
 	}
 	else{
 		if (pid == 0){
-			if(isCSV(ptr->d_name) == 1){
-				mergesort();
-				childpid(head, pid);
-        		}
+			if(access(strcat("./", ptr->d_name), R_OK)==0{	
+				if(isCSV(ptr->d_name) == 1){
+					mergesort();
+					childpid(head, pid);
+        			}
+			}
 		}
 		if (pid == 1){
-			wait();
+			while(wait(0, NULL, 0)<=0){
+			}
+			continue;
         	}
 		  
       }
