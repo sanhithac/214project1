@@ -3,25 +3,17 @@
 #include<string.h>
 #include "scannerCSVsorter.h"
 
-int main(int argc, char* argv[]){
-  //error message if all the arguments are not available
-  if(argc<3){
-    printf("Invalid Input\n");
-    return 0;
-  }
-	
-  FILE *fp;
+int sorter(FILE *fp, char *colName){	
   char firstrow[1000];
-  fp=stdin;
    if(fp==NULL){
      printf("Invalid Input");
      return -1;
   }
   fscanf(fp, "%[^\n]", firstrow);
   printf("%s\n", firstrow);
-  int colInd=columnNum(firstrow, argv[2]);
+  int colInd=columnNum(firstrow, colName);
   if(colInd==-1){
-    printf("Invalid Input");
+    printf("Invalid Input: Column does not exist");
     return -1;
   }
 	
@@ -33,7 +25,7 @@ int main(int argc, char* argv[]){
 	
   //sorts the nodes/rows
   Node **new=&head;	
-  //  MergeSort(new);
+  MergeSort(new);
 	
   //prints the first row and sorted nodes to stdout
   print(head);
