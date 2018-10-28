@@ -124,18 +124,15 @@ int isDirectory(char d_name[]){
 
 //checks if the input is a csv file
 int isCSV(char* d_name){
+  char[5] tempStr = "";
   if (strlen(d_name) < 5)
     return 0;
-  if (strcmp(d_name[strlen(d_name)-1],"v") != 0)
-    return 0;
-  if(strcmp(d_name[strlen(d_name)-2],"s") != 0)
-    return 0;
-  if(strcmp(d_name[strlen(d_name)-3],"c") != 0)
-    return 0;
-  if(strcmp(d_name[strlen(d_name)-4],".") != 0)
-    return 0;
-
-  return 1;
+  for(int i = strlen(d_name)-4; i < strlen(d_name); i++){
+    tempStr += d_name[i];
+  }
+  if(strcmp(tempStr, ".csv") == 0)
+    return 1;
+  return 0;
 }
 
 pidNode* childpid(pidNode * head, pid_t pid){
