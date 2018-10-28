@@ -37,7 +37,7 @@
      if(argc[6] == NULL)
 	     printf("Incorrect Input: No directory specified");
      else
-             outDir=strcat(outDir, argv[6]);
+        outDir=strcat(outDir, argv[6]);
    }
 	 
    int processCounter=0;
@@ -62,7 +62,7 @@ void directChild(DIR* dir = opendir(dirc1)){
 			pid = fork();
 			processCounter++;
 				if (pid == 0){
-					directChild(); //recurse
+					directChild(ptr); //recurse
 					printf("%d", pid);
         }
 				else if (pid ==1){
@@ -90,4 +90,31 @@ void directChild(DIR* dir = opendir(dirc1)){
       continue;
     }
   }
+}
+
+//checks if the input is a directory
+int isDirectory(char d_name[]){
+  for(int i =0; i< strlen(d_name);i++){
+    if(d_name[i].Equals('.')){
+      return 0;
+    }
+  }
+  return 1;
+}
+
+//checks if the input is a csv file
+int isCSV(char d_name[]){
+  if (strlen(d_name) < 5)
+    return 0;
+  if (!(d_name[strlen(d_name)-1].Equals('v'))){
+    return 0;
+  }
+  if(!(d_name[strlen(d_name)-2].Equals('s')))
+    return 0;
+  if(!(d_name[strlen(d_name)-3].Equals('c')))
+    return 0;
+  if(!(d_name[strlen(d_name)-4].Equals('.')))
+    return 0;
+
+  return 1;
 }
