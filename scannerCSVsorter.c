@@ -149,5 +149,5 @@ void printVals(pid_t pid, Node *head, int counter){
     		p = p->next;
  	 }
 	printf("\n Total number of processes: %lf\n", pow(2, counter));
-	return 0;
+	return;
 }
