@@ -10,6 +10,8 @@
    //input and output directories
    char *inDir=".";
    char *outDir=".";
+   
+   Node * head=NULL;
 	 
    if(argc%2 ==0){ //even
      printf("Incorrect Input");
@@ -69,7 +71,7 @@ void directChild(DIR* dir = opendir(dirc1)){
 	if(isDirectory(ptr->d_type) == DT_DIR){//directory
 		if (pid == 0){//child pid
 			directChild(ptr); //recurse
-			childpid(pid);
+			childpid(head, pid);
         	}
 		else if (pid ==1){//parent pid
 			continue;
@@ -79,7 +81,7 @@ void directChild(DIR* dir = opendir(dirc1)){
 		if (pid == 0){
 			if(isCSV(ptr->d_name) == 1){
 				mergesort();
-				childpid(pid);
+				childpid(head, pid);
         		}
 		}
 		if (pid == 1){
@@ -115,4 +117,23 @@ int isCSV(char d_name[]){
     return 0;
 
   return 1;
+}
+
+Node* childpid(Node * head, pid_t pid){
+	Node *temp= (Node *)malloc(sizeof(Node));
+	Node *p=NULL;
+	
+	if(head==NULL){
+		head = (Node *)malloc(sizeof(Node));
+		head->data=pid;
+	}
+	else{
+		p=head;
+		while(p->next !=NULL){
+			p=p->next;
+		}
+		p->next =temp;
+		temp->data=pid;
+	}
+	return head;
 }
