@@ -38,7 +38,7 @@ int main(int argc, char** argv){
      if(strcmp(argv[4],"-o")==0)
 	     printf("Incorrect Input: No directory specified\n");
      else
-   	  inDir=strcat(inDir, argv[4]);//or try inDir = argv[4]
+   	  inDir=argv[4];//or try inDir = argv[4]
    }
    if(argv[3]=="-o"){//output directory specified
      if(argv[4] == NULL)
