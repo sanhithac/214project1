@@ -4,6 +4,7 @@
 #include <string.h> 
 #include <unistd.h>
 #include <sys/types.h> 
+#include "scannerCSVsorter.h"
 #include "simpleCSVsorter.c" 
 
  int main(int argc, char** argv){ 
@@ -130,12 +131,12 @@ int isCSV(char d_name[]){
   return 1;
 }
 
-Node* childpid(Node * head, pid_t pid){
-	Node *temp= (Node *)malloc(sizeof(Node));
-	Node *p=NULL;
+pidNode* childpid(pidNode * head, pid_t pid){
+	pidNode *temp= (pidNode *)malloc(sizeof(pidNode));
+	pidNode *p=NULL;
 	
 	if(head==NULL){
-		head = (Node *)malloc(sizeof(Node));
+		head = (pidNode *)malloc(sizeof(pidNode));
 		head->data=pid;
 	}
 	else{
@@ -149,7 +150,7 @@ Node* childpid(Node * head, pid_t pid){
 	return head;
 }
 
-void printVals(pid_t pid, Node *head, int counter){
+void printVals(pid_t pid, pidNode *head, int counter){
 	printf("Initial PID: %d\n", pid);
 	printf("PID of all child processes:");
 	Node *p=NULL;
