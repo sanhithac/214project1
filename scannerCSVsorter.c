@@ -60,7 +60,7 @@
      printf("Incorrect Input: Input directory specified does not exist\n");
      return -1; 
    }
-   if(outDir==NULL){
+   if(out==NULL){
      printf("Incorrect Input: Output directory specified does not exist\n");
      return -1; 
    }
