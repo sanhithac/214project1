@@ -46,9 +46,8 @@
        }
      }
    }
-	 
+       
    int processCounter=0;
-  
    DIR* dir; 
    DIR* out;
    //struct dirent* ptr; 
@@ -60,27 +59,28 @@
      printf("Incorrect Input: Input directory specified does not exist\n");
      return -1; 
    }
-   if(out==NULL){
+   if(outDir==NULL){
      printf("Incorrect Input: Output directory specified does not exist\n");
      return -1; 
    }
 	 
-  directChild(dir);
+   directChild(dir, head, processCounter);
    printVals(getpid(), head, processCounter);
    return 0; 
  } 
 
-void directChild(DIR* dir){
+void directChild(DIR* dir, pidNode * head, int processCounter){
   int pid;
+
   struct dirent* ptr; //points to the directory that is read
-  while((ptr = readdir(dir))!= null){
+  while((ptr = readdir(dir))!= NULL){
 	DIR* temp;
 	pid = fork();
 	processCounter++;
 	if(ptr->d_type == DT_DIR){//directory
 		if (pid == 0){//child pid
-			temp=opendir(ptr->name);
-			directChild(ptemp); //recurse
+			temp=opendir(ptr->d_name);
+			directChild(temp); //recurse
 			childpid(head, pid);
         	}
 		else if (pid ==1){//parent pid
@@ -102,6 +102,7 @@ void directChild(DIR* dir){
   }
 }
 
+/*
 //checks if the input is a directory
 int isDirectory(char d_name[]){
   for(int i =0; i< strlen(d_name);i++){
@@ -111,6 +112,7 @@ int isDirectory(char d_name[]){
   }
   return 1;
 }
+*/
 
 //checks if the input is a csv file
 int isCSV(char d_name[]){
