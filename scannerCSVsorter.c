@@ -71,15 +71,17 @@
    return 0; 
  } 
 
-void directChild(DIR* dir = opendir(dirc1)){
+void directChild(DIR* dir){
   int pid;
   struct dirent* ptr; //points to the directory that is read
   while((ptr = readdir(dir))!= null){
+	DIR* temp;
 	pid = fork();
 	processCounter++;
 	if(ptr->d_type == DT_DIR){//directory
 		if (pid == 0){//child pid
-			directChild(ptr->d_name); //recurse
+			temp=opendir(ptr->name);
+			directChild(ptemp); //recurse
 			childpid(head, pid);
         	}
 		else if (pid ==1){//parent pid
