@@ -31,7 +31,13 @@
      if(argc[4] == NULL)
 	     printf("Incorrect Input: No directory specified");
      else
-   	  inDir=strcat(inDir, argv[4]);
+   	  inDir=strcat(inDir, argv[4]);//or try inDir = argv[4]
+   }
+   if(argv[3]=="-o"){//output directory specified
+     if(argc[4] == NULL)
+	     printf("Incorrect Input: No directory specified");
+     else
+        outDir=strcat(outDir, argv[4]);
    }
    if(argv[5] == "-o"){//output directory specified
      if(argc[6] == NULL)
@@ -56,39 +62,31 @@ directChild(dir);
 
 void directChild(DIR* dir = opendir(dirc1)){
   int pid;
-	struct dirent* ptr; //points to the directory that is read
-	while((ptr = readdir(dir))!= null){
-		if(isDirectory(ptr->d_name) == 1){
-			pid = fork();
-			processCounter++;
-				if (pid == 0){
-					directChild(ptr); //recurse
-					printf("%d", pid);
-        }
-				else if (pid ==1){
-					continue;
-        }
-        else{
-
-        }
+  struct dirent* ptr; //points to the directory that is read
+  while((ptr = readdir(dir))!= null){
+	pid = fork();
+	processCounter++;
+	if(isDirectory(ptr->d_type) == DT_DIR){//directory
+		if (pid == 0){//child pid
+			directChild(ptr); //recurse
+			printf("%d", pid);
+        	}
+		else if (pid ==1){//parent pid
+			continue;
+        	}
+	}
+	else{
+		if (pid == 0){
+			if(isCSV(ptr->d_name) == 1){
+				mergesort();
+				printf("%d", pid);
+        		}
+		}
+		if (pid == 1){
+			continue;
+        	}
+		  
       }
-		else if(isCSV(ptr->d_name) == 1){
-			pid = fork();
-			processCounter++;
-				if (pid == 0){
-					mergesort();
-					printf("%d", pid);
-        }
-				if (pid == 1){
-					continue;
-        }
-		  else{
-	
-      }
-    }
-    else{ //neither direc or csv
-      continue;
-    }
   }
 }
 
