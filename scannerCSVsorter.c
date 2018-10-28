@@ -51,13 +51,21 @@
    int processCounter=0;
   
    DIR* dir; 
+   DIR* out;
    //struct dirent* ptr; 
 
    dir = opendir(inDir); //opens a directory
+   out = opendir(outDir);	 
+	 
    if(dir == NULL){ 
      printf("Incorrect Input: Input directory specified does not exist");
      return -1; 
    }
+   if(outDir==NULL){
+     printf("Incorrect Input: Output directory specified does not exist");
+     return -1; 
+   }
+	 
    directChild(dir);
    printVals(getpid(), head, processCounter);
    return 0; 
@@ -69,9 +77,9 @@ void directChild(DIR* dir = opendir(dirc1)){
   while((ptr = readdir(dir))!= null){
 	pid = fork();
 	processCounter++;
-	if(isDirectory(ptr->d_type) == DT_DIR){//directory
+	if(ptr->d_type == DT_DIR){//directory
 		if (pid == 0){//child pid
-			directChild(ptr); //recurse
+			directChild(ptr->d_name); //recurse
 			childpid(head, pid);
         	}
 		else if (pid ==1){//parent pid
