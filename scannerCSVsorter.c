@@ -7,10 +7,10 @@
 #include "scannerCSVsorter.h"
 #include "simpleCSVsorter.c" 
 
-int main(int argc, char** argv){ 
+ int main(int argc, char** argv){ 
    //input and output directories
-   char *inDir;
-   char *outDir;
+   char *inDir=".";
+   char *outDir=".";
    char *colName;
    
    pidNode * head=NULL;
@@ -31,30 +31,21 @@ int main(int argc, char** argv){
      printf("Incorrect Input: No column name\n");
      return -1;  
    } 
-   else{
+   else{//record column Name
      colName=argv[2];
    }
-   if(argv[3] == "-d"){//input directory specified
-     if(strcmp(argv[4],"-o")==0)
-	     printf("Incorrect Input: No directory specified\n");
-     else
-   	  inDir=argv[4];//or try inDir = argv[4]
-   }
-   if(argv[3]=="-o"){//output directory specified
-     inDir=".";
-     if(argv[4] == NULL)
-	     printf("Incorrect Input: No directory specified\n");
-     else
-        outDir=argv[4];
-   }
-   else if(argv[5] == "-o"){//output directory specified
-     if(argv[6] == NULL)
-	     printf("Incorrect Input: No directory specified\n");
-     else
-        outDir=argv[6];
-   }
-   else{
-     outDir=".";
+   if(argc>3){
+     if(strcmp(argv[3],"-d")==0){//input directory specified
+       inDir=argv[4];
+     }
+     else if(strcmp(argv[3],"-o")==0){//output directory specified
+       outDir=argv[4];
+     }
+     if(argc>5){
+       if(strcmp(argv[5],"-o")==0){//output directory specified
+             outDir=argv[6];
+       }
+     }
    }
 	 
    int processCounter=0;
