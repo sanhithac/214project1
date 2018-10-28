@@ -58,7 +58,8 @@
      printf("Incorrect Input: Input directory specified does not exist");
      return -1; 
    }
-directChild(dir);
+   directChild(dir);
+   printVals(getpid(), head, processCounter);
    return 0; 
  } 
 
@@ -136,4 +137,17 @@ Node* childpid(Node * head, pid_t pid){
 		temp->data=pid;
 	}
 	return head;
+}
+
+void printVals(pid_t pid, Node *head, int counter){
+	printf("Initial PID: %d\n", pid);
+	printf("PID of all child processes:");
+	Node *p=NULL;
+  	p=head;
+  	while (p!= NULL){
+    		printf("%d", p->data, ", ");
+    		p = p->next;
+ 	 }
+	printf("\n Total number of processes: %lf\n", pow(2, counter));
+	return 0;
 }
