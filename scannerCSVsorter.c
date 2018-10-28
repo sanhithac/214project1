@@ -85,7 +85,7 @@ void directChild(DIR* dir){
 			childpid(head, pid);
         	}
 		else if (pid ==1){//parent pid
-			continue;
+			wait();
         	}
 	}
 	else{
@@ -96,7 +96,7 @@ void directChild(DIR* dir){
         		}
 		}
 		if (pid == 1){
-			continue;
+			wait();
         	}
 		  
       }
