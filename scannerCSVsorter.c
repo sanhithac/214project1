@@ -4,7 +4,6 @@
 #include <string.h> 
 #include <unistd.h>
 #include <sys/types.h> 
-#include "scannerCSVsorter.h"
 #include "simpleCSVsorter.c" 
 
  int main(int argc, char** argv){ 
