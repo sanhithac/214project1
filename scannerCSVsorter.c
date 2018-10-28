@@ -7,44 +7,48 @@
 #include "scannerCSVsorter.h"
 #include "simpleCSVsorter.c" 
 
- int main(int argc, char** argv){ 
+int main(int argc, char** argv){ 
    //input and output directories
    char *inDir=".";
    char *outDir=".";
+   char *colName;
    
    pidNode * head=NULL;
 	 
    if(argc%2 ==0){ //even
-     printf("Incorrect Input");
+     printf("Incorrect Input\n");
      return -1; 
    } 
    if(argc >7){ //too long
-     printf("Incorrect Input");
+     printf("Incorrect Input\n");
      return -1; 
    } 
-   if(argv[1] != "-c"){ //no -c
-     printf("Incorrect Input: No column flag");
+   if(strcmp(argv[1],"-c")!=0){ //no -c
+     printf("Incorrect Input: No column flag\n");
      return -1; 
    } 
-   if(argv[2] == NULL){ //no category
-     printf("Incorrect Input: No column name");
+   if(strcmp(argv[2],"-d")==0||strcmp(argv[2],"-o")==0){ //no category
+     printf("Incorrect Input: No column name\n");
      return -1;  
    } 
+   else{
+     colName=argv[2];
+   }
    if(argv[3] == "-d"){//input directory specified
-     if(argv[4] == NULL)
-	     printf("Incorrect Input: No directory specified");
+     if(strcmp(argv[4],"-o")==0)
+	     printf("Incorrect Input: No directory specified\n");
      else
    	  inDir=strcat(inDir, argv[4]);//or try inDir = argv[4]
    }
    if(argv[3]=="-o"){//output directory specified
      if(argv[4] == NULL)
-	     printf("Incorrect Input: No directory specified");
+	     printf("Incorrect Input: No directory specified\n");
      else
         outDir=strcat(outDir, argv[4]);
    }
    if(argv[5] == "-o"){//output directory specified
      if(argv[6] == NULL)
-	     printf("Incorrect Input: No directory specified");
+	     printf("Incorrect Input: No directory specified\n");
      else
         outDir=strcat(outDir, argv[6]);
    }
@@ -59,15 +63,15 @@
    out = opendir(outDir);	 
 	 
    if(dir == NULL){ 
-     printf("Incorrect Input: Input directory specified does not exist");
+     printf("Incorrect Input: Input directory specified does not exist\n");
      return -1; 
    }
    if(outDir==NULL){
-     printf("Incorrect Input: Output directory specified does not exist");
+     printf("Incorrect Input: Output directory specified does not exist\n");
      return -1; 
    }
 	 
-   directChild(dir);
+  directChild(dir);
    printVals(getpid(), head, processCounter);
    return 0; 
  } 
