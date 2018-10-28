@@ -80,7 +80,7 @@ void directChild(DIR* dir, pidNode * head, int processCounter){
 	if(ptr->d_type == DT_DIR){//directory
 		if (pid == 0){//child pid
 			temp=opendir(ptr->d_name);
-			directChild(temp); //recurse
+			directChild(temp, head, processCounter); //recurse
 			childpid(head, pid);
         	}
 		else if (pid ==1){//parent pid
@@ -115,7 +115,7 @@ int isDirectory(char d_name[]){
 */
 
 //checks if the input is a csv file
-int isCSV(char d_name[]){
+int isCSV(char* d_name){
   if (strlen(d_name) < 5)
     return 0;
   if (strcmp(d_name[strlen(d_name)-1],"v") != 0)
