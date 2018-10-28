@@ -26,6 +26,6 @@ void Finish(Node* head);
 void directChild(DIR* dir);
 int isDirectory(char d_name[]);
 int isCSV(char d_name[]);
-Node* childpid(Node * head, pid_t pid);
-void printVals(pid_t pid, Node *head, int counter);
+pidNode* childpid(pidNode * head, pid_t pid);
+void printVals(pid_t pid, pidNode *head, int counter);
 
