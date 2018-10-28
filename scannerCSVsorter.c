@@ -12,7 +12,7 @@
    char *inDir=".";
    char *outDir=".";
    
-   Node * head=NULL;
+   pidNode * head=NULL;
 	 
    if(argc%2 ==0){ //even
      printf("Incorrect Input");
