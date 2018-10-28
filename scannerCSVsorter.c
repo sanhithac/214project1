@@ -9,8 +9,8 @@
 
 int main(int argc, char** argv){ 
    //input and output directories
-   char *inDir=".";
-   char *outDir=".";
+   char *inDir;
+   char *outDir;
    char *colName;
    
    pidNode * head=NULL;
@@ -41,16 +41,20 @@ int main(int argc, char** argv){
    	  inDir=argv[4];//or try inDir = argv[4]
    }
    if(argv[3]=="-o"){//output directory specified
+     inDir=".";
      if(argv[4] == NULL)
 	     printf("Incorrect Input: No directory specified\n");
      else
-        outDir=strcat(outDir, argv[4]);
+        outDir=argv[4];
    }
-   if(argv[5] == "-o"){//output directory specified
+   else if(argv[5] == "-o"){//output directory specified
      if(argv[6] == NULL)
 	     printf("Incorrect Input: No directory specified\n");
      else
-        outDir=strcat(outDir, argv[6]);
+        outDir=argv[6];
+   }
+   else{
+     outdir=".";
    }
 	 
    int processCounter=0;
