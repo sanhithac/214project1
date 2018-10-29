@@ -23,7 +23,7 @@ void print( Node* a);
 void Finish(Node* head);
 
 
-void directChild(DIR* dir);
+void directChild(DIR* dir, pidNode * head, int processCounter);
 int isDirectory(char d_name[]);
 int isCSV(char d_name[]);
 pidNode* childpid(pidNode * head, pid_t pid);
